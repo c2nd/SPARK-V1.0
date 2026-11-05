@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page not found — SPARK</title>
+  <meta name="color-scheme" content="light dark">
+  <script>
+    (function () {
+      try {
+        var s = localStorage.getItem('theme');
+        var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.setAttribute('data-theme', s || (d ? 'dark' : 'light'));
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="./" class="logo" aria-label="SPARK home">SPARK<span class="dot">.</span></a>
+    </div>
+  </header>
+
+  <main id="main" class="container hero">
+    <p class="kicker">Error 404</p>
+    <h1>This page doesn't exist.</h1>
+    <p class="lede">The link may be broken, or the page may have moved.</p>
+    <p class="empty" style="margin-top:24px"><a href="./">← back to home</a></p>
+  </main>
+</body>
+</html>
