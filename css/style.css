@@ -500,6 +500,73 @@ button { font: inherit; cursor: pointer; color: inherit; }
 .callout strong {
   color: var(--text);
 }
+
+
+
+/* =========================================================
+   Posts Feed (Micro-blog)
+   ========================================================= */
+.posts-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 680px; /* لضمان راحة القراءة على الشاشات الكبيرة */
+}
+
+.post-card {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: border-color .2s ease;
+}
+
+.post-card:hover {
+  border-color: var(--accent);
+}
+
+.post-meta {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.post-content p {
+  margin-block: 0 1em;
+  line-height: 1.6;
+}
+.post-content p:last-child {
+  margin-bottom: 0;
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+}
+
+.post-list li {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+}
+.post-list li::before {
+  content: "•";
+  color: var(--accent);
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+
+
+
 /* =========================================================
    Motion preferences
    ========================================================= */
