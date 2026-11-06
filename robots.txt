@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://c2nd.github.io/SPARK-V1.0/sitemap.xml
