@@ -628,6 +628,110 @@ button { font: inherit; cursor: pointer; color: inherit; }
 }
 
 
+/* =========================================================
+   Reading Progress Bar
+   ========================================================= */
+#reading-progress {
+  position: fixed;
+  top: 60px; /* يبدأ من أسفل الهيدر مباشرة (طول الهيدر 60px) */
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: var(--accent);
+  z-index: 45; /* أقل من الهيدر (50) وأعلى من المحتوى */
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 10px var(--accent); /* تأثير التوهج */
+  pointer-events: none; /* يمنع الشريط من عرقلة النقر على الروابط */
+}
+
+
+
+/* =========================================================
+   Tool Layout & Forms
+   ========================================================= */
+.tool-box {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.tool-textarea {
+  width: 100%;
+  padding: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  resize: vertical;
+  transition: border-color .2s ease;
+}
+.tool-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.tool-select {
+  padding: 10px 12px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  min-width: 200px;
+}
+
+.btn-primary {
+  padding: 10px 20px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color .2s ease, transform .1s ease;
+}
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-copy {
+  position: absolute;
+  top: 8px;
+  right: 8px; /* في الوضع الإنجليزي */
+  padding: 6px 12px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.btn-copy:hover {
+  background: var(--border);
+}
+
+[dir="rtl"] .btn-copy {
+  right: auto;
+  left: 8px;
+}
+
+
+
+
+
 
 
 

@@ -91,3 +91,27 @@
   script.setAttribute('suppressLogs', '');
   document.body.appendChild(script);
 })();
+
+/* ---------- Reading Progress Bar ---------- */
+(function() {
+  // إنشاء العنصر الخاص بالشريط
+  var progressBar = document.createElement('div');
+  progressBar.id = 'reading-progress';
+  document.body.appendChild(progressBar);
+
+  // دالة حساب نسبة التمرير
+  var updateProgress = function() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    
+    // حساب النسبة المئوية مع تجنب القسمة على صفر
+    var scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    
+    // تحديث عرض الشريط
+    progressBar.style.width = Math.min(scrollPercent, 100) + '%';
+  };
+
+  // الاستماع لحدث التمرير وتغيير حجم الشاشة
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress, { passive: true });
+})();
