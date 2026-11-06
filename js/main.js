@@ -55,32 +55,39 @@
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 })();
 
-/* ---------- Visitor Counter (SiteViews) ---------- */
-(function() {
-  // إنشاء عنصر العداد
-  var counterContainer = document.createElement('span');
-  counterContainer.id = 'spark-view-counter';
-  counterContainer.style.fontFamily = 'var(--font-mono)';
-  counterContainer.style.fontSize = '0.85rem';
-  counterContainer.style.color = 'var(--muted)';
-  counterContainer.innerHTML = '👁️ Views: <span id="views">Loading...</span>';
 
-  // العثور على التذييل وإضافة العداد بجانب حقوق النشر
-  var footerInner = document.querySelector('.footer-inner');
+
+/* ---------- Visitor Counter (Professional Card) ---------- */
+(function() {
+  var footer = document.querySelector('.site-footer');
+  if (!footer) return;
+
+  // 1. إنشاء بطاقة العداد
+  var counterCard = document.createElement('div');
+  counterCard.className = 'view-counter-card';
+
+  // 2. تصميم محتوى البطاقة (يمكنك تغيير NETWORK_PINGS لاحقاً)
+  counterCard.innerHTML = `
+    <span class="counter-label">[ NETWORK_PINGS ]</span>
+    <span class="counter-number" id="views">...</span>
+  `;
+
+  // 3. إدراج البطاقة في منتصف التذييل (قبل الروابط)
+  var footerInner = footer.querySelector('.footer-inner');
   if (footerInner) {
-    // نضعه قبل رابط الخصوصية أو في نهاية التذييل
-    footerInner.appendChild(counterContainer);
+    footer.insertBefore(counterCard, footerInner);
+  } else {
+    footer.appendChild(counterCard);
   }
 
-  // تحميل سكريبت SiteViews
+  // 4. تحميل سكريبت العداد
   var script = document.createElement('script');
   script.src = 'https://unpkg.com/siteviews@2.2.1/dist/index.js';
   script.type = 'application/javascript';
   script.setAttribute('scriptfor', 'siteviews');
-  script.setAttribute('project-name', 'spark-c2nd'); // معرف فريد لمشروعك
+  script.setAttribute('project-name', 'spark-c2nd');
   script.setAttribute('output-element-id', 'views');
-  script.setAttribute('refresh', '30'); // تحديث تلقائي كل 30 ثانية (اختياري)
-  script.setAttribute('suppressLogs', ''); // إخفاء رسائل الكونسول
-  
+  script.setAttribute('refresh', '30');
+  script.setAttribute('suppressLogs', '');
   document.body.appendChild(script);
 })();
