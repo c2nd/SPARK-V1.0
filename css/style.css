@@ -731,6 +731,613 @@ button { font: inherit; cursor: pointer; color: inherit; }
 
 
 
+/* =========================================================
+   Terminal 404 Page
+   ========================================================= */
+.terminal-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #050505 !important; /* خلفية سوداء داكنة جداً */
+  margin: 0;
+  padding: 20px;
+  font-family: var(--font-mono);
+}
+
+.terminal-window {
+  width: 100%;
+  max-width: 800px;
+  background-color: #0c0c0c;
+  border: 1px solid #333;
+  border-radius: 8px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+}
+
+.terminal-header {
+  background-color: #1a1a1a;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
+
+.terminal-header .dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.terminal-header .dot.red { background-color: #ff5f56; }
+.terminal-header .dot.yellow { background-color: #ffbd2e; }
+.terminal-header .dot.green { background-color: #27c93f; }
+
+.terminal-title {
+  color: #888;
+  font-size: 0.8rem;
+  margin: 0 auto; /* في المنتصف */
+  transform: translateX(-16px); /* تعويض الأزرار لجعله في المنتصف تماماً */
+}
+
+.terminal-body {
+  padding: 24px;
+  color: #e0e0e0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  min-height: 250px;
+}
+
+.term-line {
+  margin: 0 0 8px 0;
+  white-space: pre-wrap; /* للحفاظ على المسافات والأسطر */
+}
+
+.term-prompt {
+  color: #27c93f; /* لون أخضر كلاسيكي */
+  font-weight: bold;
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.2em;
+  background-color: #e0e0e0;
+  vertical-align: text-bottom;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.term-link {
+  color: #ffbd2e; /* لون أصفر/برتقالي */
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 1px dashed transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.term-link:hover {
+  color: #fff;
+  border-bottom-color: #ffbd2e;
+}
+
+
+
+
+/* =========================================================
+   Threat Intel Dashboard
+   ========================================================= */
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.filter-btn {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 8px 16px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.filter-btn.active {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.threat-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.threat-table th {
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.threat-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: middle;
+}
+
+.threat-table tr:last-child td {
+  border-bottom: none;
+}
+
+.threat-table tr:hover {
+  background: var(--surface);
+}
+
+/* ألوان الخطورة */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.sev-critical { background: rgba(220, 38, 38, 0.15); color: #ef4444; }
+.sev-high     { background: rgba(234, 88, 12, 0.15); color: #f97316; }
+.sev-medium   { background: rgba(234, 179, 8, 0.15); color: #eab308; }
+.sev-low      { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+
+[data-theme="dark"] .sev-critical { background: rgba(248, 113, 113, 0.15); color: #f87171; }
+[data-theme="dark"] .sev-high     { background: rgba(251, 146, 60, 0.15); color: #fb923c; }
+[data-theme="dark"] .sev-medium   { background: rgba(250, 204, 21, 0.15); color: #facc15; }
+[data-theme="dark"] .sev-low      { background: rgba(74, 222, 128, 0.15); color: #4ade80; }
+
+/* شاشة الهاتف */
+@media (max-width: 600px) {
+  .threat-table th, .threat-table td {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+  .threat-table th:nth-child(5), .threat-table td:nth-child(5) {
+    display: none; /* إخفاء عمود التاريخ على الهواتف لتوفير مساحة */
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   Command Palette Search
+   ========================================================= */
+#command-palette-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: none; /* يتم تغييره لـ flex بواسطة JS */
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 15vh;
+  animation: fadeIn 0.15s ease-out;
+}
+
+#command-palette {
+  width: 100%;
+  max-width: 600px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  font-family: var(--font-sans);
+  animation: slideDown 0.2s ease-out;
+}
+
+.cp-input-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.cp-icon {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-size: 1.1rem;
+  margin-right: 12px;
+  font-weight: bold;
+}
+
+#cp-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.05rem;
+  color: var(--text);
+  font-family: var(--font-sans);
+}
+
+#cp-input::placeholder {
+  color: var(--muted);
+}
+
+.cp-shortcut {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  background: var(--surface);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  letter-spacing: 0.05em;
+}
+
+#cp-results {
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.cp-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.1s ease, border-color 0.1s ease;
+  border-left: 2px solid transparent;
+}
+
+.cp-item.active {
+  background: var(--surface);
+  border-left-color: var(--accent);
+}
+
+.cp-item-title {
+  font-size: 0.95rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.cp-item-type {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+.cp-item.active .cp-item-title {
+  color: var(--accent);
+}
+
+.cp-empty {
+  padding: 16px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+
+
+
+/* =========================================================
+   Hacker Timeline
+   ========================================================= */
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px 0;
+}
+
+/* الخط الرأسي في المنتصف */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background: var(--border);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1px;
+}
+
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 20px 40px;
+  box-sizing: border-box;
+}
+
+/* العناصر الفردية على اليسار */
+.timeline-item:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+/* العناصر الزوجية على اليمين */
+.timeline-item:nth-child(even) {
+  left: 50%;
+  text-align: left;
+}
+
+/* النقطة المضيئة على الخط */
+.timeline-dot {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: -8px;
+  background-color: var(--bg);
+  border: 3px solid var(--accent);
+  border-radius: 50%;
+  top: 32px;
+  z-index: 1;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.timeline-item:nth-child(even) .timeline-dot {
+  left: -8px;
+  right: auto;
+}
+
+/* بطاقة المحتوى */
+.timeline-content {
+  padding: 20px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.timeline-content:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.timeline-date {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--surface);
+  color: var(--accent);
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+}
+
+.timeline-content h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.timeline-content p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* التصميم على شاشات الهاتف */
+@media screen and (max-width: 720px) {
+  .timeline::after {
+    left: 20px; /* نقل الخط لليسار */
+  }
+  
+  .timeline-item {
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 0;
+  }
+  
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    left: 0;
+    text-align: left;
+  }
+  
+  .timeline-item:nth-child(odd) .timeline-dot,
+  .timeline-item:nth-child(even) .timeline-dot {
+    left: 12px;
+    right: auto;
+  }
+}
+
+
+/* =========================================================
+   Terminal Back to Top
+   ========================================================= */
+#back-to-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+#back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#back-to-top:hover {
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 10px rgba(224, 93, 4, 0.2);
+}
+
+[data-theme="dark"] #back-to-top:hover {
+  box-shadow: 0 0 10px rgba(255, 138, 61, 0.2);
+}
+
+
+/* =========================================================
+   Article Cards (Horizontal Layout)
+   ========================================================= */
+.articles-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.article-card {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  color: var(--text);
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.article-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+  color: var(--text);
+}
+
+.article-card-img {
+  flex: 0 0 35%; /* الصورة تأخذ 35% من عرض البطاقة */
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.article-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* يمنع تشوه الصورة ويملأ المساحة */
+  transition: transform .3s ease;
+}
+
+.article-card:hover .article-card-img img {
+  transform: scale(1.05); /* تأثير تقريب خفيف عند التمرير */
+}
+
+.article-card-content {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.article-card-content h3 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.article-card-content p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* التصميم على شاشات الهاتف */
+@media (max-width: 600px) {
+  .article-card {
+    flex-direction: column; /* تعود الصورة فوق النص على الهاتف */
+  }
+  
+  .article-card-img {
+    flex: 0 0 auto;
+    height: 180px; /* ارتفاع ثابت للصورة على الهاتف */
+  }
+  
+  .article-card-content {
+    padding: 16px;
+  }
+  
+  .article-card-content h3 {
+    font-size: 1.05rem;
+  }
+}
+
+
+
+
+
+
+
 
 
 

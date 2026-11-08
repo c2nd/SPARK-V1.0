@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page not found — SPARK</title>
-  <meta name="color-scheme" content="light dark">
+  <title>404 — System Error | SPARK</title>
+  <meta name="robots" content="noindex, nofollow">
+  
   <script>
     (function () {
       try {
@@ -14,23 +15,71 @@
       } catch (e) {}
     })();
   </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="./" class="logo" aria-label="SPARK home">SPARK<span class="dot">.</span></a>
+<body class="terminal-page">
+  
+  <div class="terminal-window">
+    <div class="terminal-header">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+      <span class="terminal-title">bash — spark_404</span>
     </div>
-  </header>
+    <div class="terminal-body" id="terminal-body">
+      <!-- سيتم كتابة النص هنا عبر JavaScript -->
+      <p class="term-line"><span class="term-prompt">root@spark:~#</span> <span id="typed-text"></span><span class="cursor">_</span></p>
+    </div>
+  </div>
 
-  <main id="main" class="container hero">
-    <p class="kicker">Error 404</p>
-    <h1>This page doesn't exist.</h1>
-    <p class="lede">The link may be broken, or the page may have moved.</p>
-    <p class="empty" style="margin-top:24px"><a href="./">← back to home</a></p>
-  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const textToType = "ERROR 404: File not found. \n> The requested URL was not found on this server.\n> It may have been moved, deleted, or never existed.\n\nroot@spark:~# cd /home";
+      const target = document.getElementById('typed-text');
+      const terminalBody = document.getElementById('terminal-body');
+      let i = 0;
+      const speed = 40; // سرعة الكتابة (بالميلي ثانية)
+
+      function typeWriter() {
+        if (i < textToType.length) {
+          const char = textToType.charAt(i);
+          if (char === '\n') {
+            // إنشاء سطر جديد
+            const newLine = document.createElement('p');
+            newLine.className = 'term-line';
+            newLine.innerHTML = `<span class="term-prompt">root@spark:~#</span> <span id="next-typed"></span><span class="cursor">_</span>`;
+            terminalBody.appendChild(newLine);
+            
+            // نقل المؤشر للسطر الجديد
+            target.parentElement.querySelector('.cursor').remove();
+            target.id = ''; // إزالة المعرف القديم
+            const newTarget = newLine.querySelector('#next-typed');
+            newTarget.id = 'typed-text';
+            
+            // إعادة تعيين المتغيرات
+            window.target = newTarget; 
+          } else {
+            document.getElementById('typed-text').textContent += char;
+          }
+          i++;
+          setTimeout(typeWriter, speed);
+        } else {
+          // بعد انتهاء الكتابة، إضافة زر العودة
+          const btnLine = document.createElement('p');
+          btnLine.className = 'term-line';
+          btnLine.style.marginTop = '20px';
+          btnLine.innerHTML = `<a href="./" class="term-link">[ Return to Home Page ]</a>`;
+          terminalBody.appendChild(btnLine);
+        }
+      }
+
+      // بدء الكتابة بعد ثانية
+      setTimeout(typeWriter, 500);
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>SPARK — Cybersecurity, Tools &amp; Digital History</title>
+  <link>https://c2nd.github.io/SPARK-V1.0/</link>
+  <description>Deep dives into cyber attacks, history, and free developer tools.</description>
+  <language>en-us</language>
+  <lastBuildDate>Sat, 07 Nov 2026 12:00:00 GMT</lastBuildDate>
+  <atom:link href="https://c2nd.github.io/SPARK-V1.0/feed.xml" rel="self" type="application/rss+xml" />
+
+  <item>
+    <title>Security Analysis: The $6.34B Binance Hack</title>
+    <link>https://c2nd.github.io/SPARK-V1.0/article.html</link>
+    <description>How EIP-7702 and a fake interview bypassed the signing layer.</description>
+    <pubDate>Thu, 05 Nov 2026 12:00:00 GMT</pubDate>
+    <guid>https://c2nd.github.io/SPARK-V1.0/article.html</guid>
+  </item>
+
+  <item>
+    <title>c0mrade: The Teenager Who Breached NASA</title>
+    <link>https://c2nd.github.io/SPARK-V1.0/c0mrade.html</link>
+    <description>The true story of Jonathan James (c0mrade), the 15-year-old who hacked NASA and the DoD in 1999.</description>
+    <pubDate>Thu, 05 Nov 2026 12:00:00 GMT</pubDate>
+    <guid>https://c2nd.github.io/SPARK-V1.0/c0mrade.html</guid>
+  </item>
+</channel>
+</rss>
